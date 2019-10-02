@@ -18,6 +18,7 @@ p {
   min-height: 100vh;
 }
 
+
 .quiz-screen__wrapper {
  /* // margin: auto; */
   padding: 30px;
@@ -46,6 +47,18 @@ p {
 .quiz-screen__submit:hover, 
 .quiz-screen__next:hover {
   background-color: grey;
+}
+
+/* ------------------------------ */
+/* ------------------------------ */
+/*     HIDDEN SCREENS FOR QUIZ      */
+/* ------------------------------ */
+
+#quiz, 
+#quiz-feedback, 
+#final-results {
+  display: none;
+  /* opacity: 0; */
 }
 
 /* ------------------------------ */

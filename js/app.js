@@ -66,14 +66,29 @@
         
 
         //Not sure if this function is even needed 
-        function renderQuizApp() {
-            // this function will be responsible for rendering the quiz app in the DOM
-            console.log('`renderQuizApp` ran');
-        }
+        // function renderQuizApp() {
+        //     // this function will be responsible for rendering the quiz app in the DOM
+        //     console.log('`renderQuizApp` ran');
+        // }
 
         function startQuizApp() {
             //responsible for when an user clicks a button to start the quiz
             console.log('`startQuizApp` ran');
+
+            //on button click, hide start screen
+            //show first question
+
+            $("#start-button").click(function(event) {
+              event.preventDefault();
+              
+              $("#quiz-screen-intro").hide();
+              $("#quiz").show();
+
+              /*$("#quiz").show().animate({
+                opacity: 1
+              }, 500);*/
+
+            });
         }
 
         function handleQuizQuestions() {
@@ -120,7 +135,7 @@
 
         // this function will be our callback when the page loads.
         function handleQuizApp() {
-            renderQuizApp();
+            //renderQuizApp();
             startQuizApp();
             handleQuizQuestions();
             quizAppProgress();

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--- basic page needs
+   ================================================== -->
+    <meta charset="utf-8">
+    <title>
+      Recycling Quiz
+    </title>
+
+    <!-- mobile specific metas
+   ================================================== -->
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    
+    <!-- CSS
+   ================================================== -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <main>
+
+      <section class="quiz-screen">
+        <div class="quiz-screen__wrapper">
+
+            <!-- Quiz Start Screen-->
+            <div id="quiz-screen-intro">
+                <img alt="Placeholder logo" class="quiz-screen__intro-logo" src="https://via.placeholder.com/150x150?text=Placeholder+Image">
+                <h1>Think you know how to recycle?</h1>
+                <button class="quiz-screen__start-button" id="start-button">Start the quiz</button>
+            </div>
+
+            <!-- Quiz Content/Questions -->
+            <div id="quiz">
+                <div class="quiz-count-wrapper">
+                    <p class="quiz-count-wrapper__questions">Question: 1/5</p>
+                    <p class="quiz-count-wrapper__score">Score: 0</p>
+                </div>
+                <h2 class="quiz-screen__question">On average, how many aluminum soda cans are used in the United States each year?</h2>
+                <form class="form">
+                    <div class="inputGroup">
+                        <input id="90-billion" name="radio" type="radio"/>
+                        <label for="90-billion">90 billion</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input id="80-billion" name="radio" type="radio"/>
+                        <label for="80-billion">80 billion</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input id="70-billion" name="radio" type="radio"/>
+                        <label for="70-billion">70 billion</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input id="5-billion" name="radio" type="radio"/>
+                        <label for="5-billion">5 billion</label>
+                    </div>
+                </form>
+                <button class="quiz-screen__submit" id="submit">Submit</button>
+            </div>
+        </div>
+      </section>
+
+      <!-- Quiz Content/Questions -->
+      <!-- <section class="quiz-screen" id="quiz">
+        <div class="quiz-screen__wrapper">
+           <div class="quiz-count-wrapper">
+              <p class="quiz-count-wrapper__questions">Question: 1/5</p>
+              <p class="quiz-count-wrapper__score">Score: 0</p>
+           </div>
+           <h2 class="quiz-screen__question">On average, how many aluminum soda cans are used in the United States each year?</h2>
+           <form class="form">
+              <div class="inputGroup">
+                 <input id="90-billion" name="radio" type="radio"/>
+                 <label for="90-billion">90 billion</label>
+              </div>
+              <div class="inputGroup">
+                 <input id="80-billion" name="radio" type="radio"/>
+                 <label for="80-billion">80 billion</label>
+              </div>
+              <div class="inputGroup">
+                 <input id="70-billion" name="radio" type="radio"/>
+                 <label for="70-billion">70 billion</label>
+              </div>
+              <div class="inputGroup">
+                 <input id="5-billion" name="radio" type="radio"/>
+                 <label for="5-billion">5 billion</label>
+              </div>
+           </form>
+           <button class="quiz-screen__submit" id="submit">Submit</button>
+        </div>
+      </section>  -->
+
+      <!-- Quiz Textual Feedback-->
+      <!-- <section class="quiz-screen" id="quiz-feedback">
+        <div class="quiz-screen__wrapper quiz-screen__wrapper==answer">
+          <div class="quiz-count-wrapper">
+              <p class="quiz-count-wrapper__questions">Question: 1/5</p>
+              <p class="quiz-count-wrapper__score">Score: 0</p>
+          </div>
+          <img class="quiz-screen__icon" src="https://via.placeholder.com/85x85?text=Placeholder+Image" alt="Placeholder logo" />
+          <p class="quiz-screen__answer-header">Incorrect</p>
+          <p class="quiz-screen__answer-copy">We use over <span class="correct-answer">80 billion</span> aluminum soda cans every year, which are recyclable, can be made into a variety of aluminum products. There is no limit to the amount of times aluminum can be recycled.</p>
+          <button class="quiz-screen__next" id="next">Next</button>
+        </div>
+      </section> -->
+
+      <!-- Final Results Screen -->
+      <!-- <section class="quiz-screen" id="final-results">
+        <div class="quiz-screen__wrapper">
+        <img class="quiz-screen__restart-logo" src="https://via.placeholder.com/150x150?text=Placeholder+Image" alt="Placeholder logo" />
+        <h2 class="quiz-screen__restart-header">You got <span class="quiz-screen__results">3/5</span> correct!</h2>
+        <button class="quiz-screen__start-button" id="restart">Restart quiz</button>
+        </div>
+      </section> -->
+    </main>
+
+    <!-- PAGE JAVASCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+    <script src="js/app.js"></script> 
+    <!-- END PAGE JAVASCRIPT -->
+  </body>
+</html>
