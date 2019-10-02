@@ -63,13 +63,25 @@
                 answerFeedback: "$1 out of every $10 spent at stores is for packaging. Packaging accounts for one-third of our waste by weight or half of our waste by volume."
             }
         ];
+
+        
+        function generateItemsString(quizQuestion) {
+          console.log("Generating quiz question");
+
+          return `On average, how many aluminum soda cans are used in the United States each year?`;
+        }
+
         
 
         //Not sure if this function is even needed 
-        // function renderQuizApp() {
-        //     // this function will be responsible for rendering the quiz app in the DOM
-        //     console.log('`renderQuizApp` ran');
-        // }
+        function renderQuizApp() {
+            // this function will be responsible for rendering the quiz app in the DOM
+            console.log('`renderQuizApp` ran');
+            const quizQuestionString = generateItemsString(quizQuestions);
+
+            // insert that HTML into the DOM
+            $('.quiz-screen__question').html(quizQuestionString);
+        }
 
         function startQuizApp() {
             //responsible for when an user clicks a button to start the quiz
@@ -87,13 +99,15 @@
               /*$("#quiz").show().animate({
                 opacity: 1
               }, 500);*/
-
             });
         }
 
-        function handleQuizQuestions() {
+        function handleQuizQuestions(quizQuestions) {
             //responsible for user answering one question at a time 
             //should not be able to skip questions 
+
+            //how to dynamically put quiz questions and answer choices into div from array
+            //console.log(quizQuestions);
 
             console.log('`handleQuizQuestions` ran');
         }
@@ -102,12 +116,17 @@
             //responsible for letting the user know what question they are on
             // i.e. Question: 2/5
 
+            //Need a loop to add +1 and stop at 5 
+
             console.log('`quizAppProgress` ran');
         }
 
         function currentQuizScore() {
             //responsible for letting the user know what their CURRENT score is
             //i.e. Score: 2
+
+            currentScore = 0;
+            //need to add +1 if question is answered correctly 
 
             console.log('`currentQuizScore` ran');
         }
@@ -135,9 +154,9 @@
 
         // this function will be our callback when the page loads.
         function handleQuizApp() {
-            //renderQuizApp();
+            renderQuizApp();
             startQuizApp();
-            handleQuizQuestions();
+            handleQuizQuestions(quizQuestions);
             quizAppProgress();
             currentQuizScore();
             onUserAnswerSubmission();
