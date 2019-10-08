@@ -52,7 +52,7 @@
                 answerFeedback: " The average American uses seven trees a year in paper, wood, and other products made from trees. Throughout the United States this amounts to about 2 billion trees per year!"
             },
             {
-                question: "What percentage of monetary purchasing goes to packaging materials",
+                question: "What percentage of monetary purchasing goes to packaging materials?",
                 answers: {
                   a: "$1 for every $10 spent",
                   b: "$1 for every $50 spent",
@@ -64,23 +64,66 @@
             }
         ];
 
-        
-        function generateItemsString(quizQuestion) {
-          console.log("Generating quiz question");
+        const totalQuestions = quizQuestions.length; //5
 
-          return `On average, how many aluminum soda cans are used in the United States each year?`;
+        //Set the current question to display to 1
+        let currentQuestion = 0;
+        
+        let currentScore = 0;
+        //need to add +1 if question is answered correctly 
+        
+        function generateItemsString() {
+          //console.log(quizQuestion);
+          
+          //to get question(s)--> console.log(quizQuestion[0].question);
+          //to get answers--> console.log(quizQuestion[0].answers);
+          //to get correctAnswer --> console.log(quizQuestion[0].correctAnswer);
+          //to get feedback--> console.log(quizQuestion[0].answerFeedback);
+
+          var quizQuestionContent = [];
+
+
+          quizQuestions.forEach(function (quizQuestion, index) {
+            //console.log(quizQuestion);
+            //quizQuestionContent.push(quizQuestion.question);
+            //console.log(quizQuestion.question, index);
+            //console.log(quizQuestion.answers.a);
+
+            quizQuestionContent.push(
+              `<h2 class="quiz-screen__question">${quizQuestion.question}</h2>
+              <form class="form">
+                <div class="inputGroup">
+                    <input id=">${quizQuestion.answers.a}" name="radio" type="radio" value=">${quizQuestion.answers.a}"/>
+                    <label for=">${quizQuestion.answers.a}">${quizQuestion.answers.a}</label>
+                </div>
+                <div class="inputGroup">
+                    <input id=">${quizQuestion.answers.b}" name="radio" type="radio" value=">${quizQuestion.answers.b}"/>
+                    <label for=">${quizQuestion.answers.b}">${quizQuestion.answers.b}</label>
+                </div>
+                <div class="inputGroup">
+                    <input id=">${quizQuestion.answers.c}" name="radio" type="radio" value=">${quizQuestion.answers.c}"/>
+                    <label for=">${quizQuestion.answers.c}">${quizQuestion.answers.c}</label>
+                </div>
+                <div class="inputGroup">
+                    <input id=">${quizQuestion.answers.d}" name="radio" type="radio" value=">${quizQuestion.answers.d}"/>
+                    <label for=">${quizQuestion.answers.d}">${quizQuestion.answers.d}</label>
+                </div>
+              </form>`
+            );
+          });
+          
+          //console.log(quizQuestionContent[0]);
+
+          return `${quizQuestionContent[currentQuestion]}`;
         }
 
-        
-
-        //Not sure if this function is even needed 
         function renderQuizApp() {
             // this function will be responsible for rendering the quiz app in the DOM
             console.log('`renderQuizApp` ran');
-            const quizQuestionString = generateItemsString(quizQuestions);
+            const quizQuestionString = generateItemsString();
 
             // insert that HTML into the DOM
-            $('.quiz-screen__question').html(quizQuestionString);
+            $('#quiz__content').html(quizQuestionString);
         }
 
         function startQuizApp() {
@@ -102,7 +145,7 @@
             });
         }
 
-        function handleQuizQuestions(quizQuestions) {
+        function handleQuizQuestions() {
             //responsible for user answering one question at a time 
             //should not be able to skip questions 
 
@@ -125,16 +168,23 @@
             //responsible for letting the user know what their CURRENT score is
             //i.e. Score: 2
 
-            currentScore = 0;
-            //need to add +1 if question is answered correctly 
-
             console.log('`currentQuizScore` ran');
         }
+
+        $("#submit").click(function(event) {
+            event.preventDefault();
+
+            onUserAnswerSubmission();
+            renderQuizApp();
+        });
 
         function onUserAnswerSubmission() {
             //responsible for giving textual feedback about their answer. 
             //If incorrect, they should be told the correct answer.
-            //user should also be able to move onto the next question
+            //user should also be able to move onto the next question.
+
+      
+            currentQuestion+=1; 
 
             console.log('`onUserAnswerSubmission` ran');
         }
@@ -156,7 +206,7 @@
         function handleQuizApp() {
             renderQuizApp();
             startQuizApp();
-            handleQuizQuestions(quizQuestions);
+            handleQuizQuestions();
             quizAppProgress();
             currentQuizScore();
             onUserAnswerSubmission();
@@ -164,7 +214,7 @@
             restartQuizApp();
         }
 
-        // when the page loads, call `handleShoppingList`
+        // when the page loads, call `handleQuizApp`
         $(handleQuizApp);
     })
 );
