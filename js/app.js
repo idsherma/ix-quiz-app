@@ -175,15 +175,20 @@
             event.preventDefault();
 
             onUserAnswerSubmission();
+            hideThis();
             renderQuizApp();
         });
+
+        function hideThis() {
+          $(".wrp").hide();
+          $("#quiz-feedback").show();
+        }
 
         function onUserAnswerSubmission() {
             //responsible for giving textual feedback about their answer. 
             //If incorrect, they should be told the correct answer.
             //user should also be able to move onto the next question.
 
-      
             currentQuestion+=1; 
 
             console.log('`onUserAnswerSubmission` ran');
