@@ -64,33 +64,19 @@
           }
       ];
 
-      const totalQuestions = quizQuestions.length; //5
-
-      //Set the current question to display to 1
+      let totalQuestions = 1; 
       let currentQuestion = 0;
-      
-      let currentScore = 0;
-      //need to add +1 if question is answered correctly 
+      let numCorrect = 0;
+      let totalNumQuestions = quizQuestions.length; //5
+      //console.log(totalNumQuestions);
+      //index and totalNum
       
       function generateItemsString() {
-        //console.log(quizQuestion);
-        
-        //to get question(s)--> console.log(quizQuestion[0].question);
-        //to get answers--> console.log(quizQuestion[0].answers);
-        //to get correctAnswer --> console.log(quizQuestion[0].correctAnswer);
-        //to get feedback--> console.log(quizQuestion[0].answerFeedback);
-
-        //console.log(quizQuestion[0].correctAnswer);
 
         var quizQuestionContent = [];
 
-
         quizQuestions.forEach(function (quizQuestion, index) {
-          //console.log(quizQuestion.correctAnswer);
-          //quizQuestionContent.push(quizQuestion.question);
-          //console.log(quizQuestion.question, index);
-          //console.log(quizQuestion.answers.a);
-
+ 
           quizQuestionContent.push(
             `<h2 class="quiz-screen__question">${quizQuestion.question}</h2>
             <form class="form">
@@ -149,33 +135,27 @@
 
       function quizAppProgress() {
           //responsible for letting the user know what question they are on
-          // i.e. Question: 2/5
-
-          //Need a loop to add +1 and stop at 5 
-
+          $("#qNum").html(currentQuestion+1);
           console.log('`quizAppProgress` ran');
-      }
-
-      function currentQuizScore() {
-          //responsible for letting the user know what their CURRENT score is
-          //i.e. Score: 2
-
-          console.log('`currentQuizScore` ran');
       }
 
       function onUserAnswerSubmission() {
           //responsible for giving textual feedback about their answer. 
           //If incorrect, they should be told the correct answer.
           //user should also be able to move onto the next question.
-
           $("#submit").click(function(event) {
             event.preventDefault();
 
             let userAnswer = $("input:checked").val();
-            console.log(userAnswer);
+            //console.log(userAnswer);
 
-            if (userAnswer === quizQuestions[currentQuestion].correctAnswer) {
+            if (userAnswer === undefined) {
+              alert("Please answer the question!");
+              return;
+            } else if (userAnswer === quizQuestions[currentQuestion].correctAnswer) {
               $(".quiz-screen__answer-header").html('Correct!');
+              //Score will update +1 if answer is correct
+              $("#scoreNum").html(numCorrect+=1);
             } else {
               $(".quiz-screen__answer-header").html('Incorrect!');
             }
@@ -192,18 +172,18 @@
             $("#quiz-feedback").hide();
             
             currentQuestion+=1; 
+
+            if(currentQuestion === totalNumQuestions) {
+              //go to result screen
+              console.log('we are going to the result screen!');
+              return;
+            }
+
+            quizAppProgress();
             renderQuizApp();
           });
 
           console.log('`onUserAnswerSubmission` ran');
-      }
-
-      function overallQuizScore() {
-          //responsible for displaying how many questions the user got right 
-          //out of total questions asked
-          //i.e. You got x out of 5 right! 
-
-          console.log('`overallQuizScore` ran');
       }
 
       function restartQuizApp() {
@@ -216,13 +196,11 @@
           renderQuizApp();
           startQuizApp();
           quizAppProgress();
-          currentQuizScore();
           onUserAnswerSubmission();
-          overallQuizScore();
           restartQuizApp();
       }
 
-      // when the page loads, call `handleQuizApp`
+      // when the page loads, call `initQuiz`
       $(initQuiz);
   })
 );
