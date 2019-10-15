@@ -1,6 +1,6 @@
-(function(scs) {
-  scs(window.jQuery, window, document);
-  }(function($, window, document) {
+// (function(scs) {
+//   scs(window.jQuery, window, document);
+//   }(function($, window, document) {
 
       // `quizQuestions` is responsible for storing the underlying data
       // that our app needs to keep track of in order to work.
@@ -63,17 +63,14 @@
               answerFeedback: "$1 out of every $10 spent at stores is for packaging. Packaging accounts for one-third of our waste by weight or half of our waste by volume."
           }
       ];
-
       let currentQuestion = 0;
       let numCorrect = 0;
-      let totalNumQuestions = quizQuestions.length; 
+      const totalNumQuestions = quizQuestions.length; 
       
       function generateItemsString() {
-
-        var quizQuestionContent = [];
+        const quizQuestionContent = [];
 
         quizQuestions.forEach(function (quizQuestion, index) {
- 
           quizQuestionContent.push(
             `<form class="form" id="myform">
                 <h2 class="quiz-screen__question">${quizQuestion.question}</h2>
@@ -96,38 +93,27 @@
             </form>`
           );
         });
+
+        console.log(quizQuestionContent);
         
         return `${quizQuestionContent[currentQuestion]}`;
       }
 
       function renderQuizApp() {
-          // this function will be responsible for rendering the quiz app in the DOM
-          console.log('`renderQuizApp` ran');
-          const quizQuestionString = generateItemsString();
+        let quizQuestionString = generateItemsString();
+        // this function will be responsible for rendering the quiz app in the DOM
+        console.log('`renderQuizApp` ran');
+          
+          //console.log(currentQuestion);
 
           // insert that HTML into the DOM
           $('#quiz__content').html(quizQuestionString);
-          //document.getElementById('myform').reset();
-          //restartQuizApp();
-      }
 
-      function startQuizApp() {
-          //responsible for when an user clicks a button to start the quiz
-          console.log('`startQuizApp` ran');
+          if(currentQuestion === totalNumQuestions) {
+            //console.log('we are at the end');
 
-          //on button click, hide start screen
-          //show first question
-
-          $("#start-button").click(function(event) {
-            event.preventDefault();
-            
-            $("#quiz-screen-intro").hide();
-            $("#quiz").show();
-
-            /*$("#quiz").show().animate({
-              opacity: 1
-            }, 500);*/
-          });
+            $('#quiz__content').html("");
+          }
       }
 
       function quizAppProgress() {
@@ -135,7 +121,6 @@
           $("#questionNumber").html(currentQuestion+1);
           console.log('`quizAppProgress` ran');
       }
-
       function onNextClick() {
         $("#next").click(function(event) {
           event.preventDefault();
@@ -145,12 +130,11 @@
           
           currentQuestion+=1; 
 
-          resultScreen();
           quizAppProgress();
           renderQuizApp();
+          resultScreen();
         });
       }
-
       function resultScreen() {
         if(currentQuestion === totalNumQuestions) {
           //go to result screen
@@ -162,7 +146,6 @@
           return;
         }
       }
-
       function onUserAnswerSubmission() {
           //responsible for giving textual feedback about their answer. 
           //If incorrect, they should be told the correct answer.
@@ -192,50 +175,76 @@
             $("#quiz-feedback").show();
           });
 
-
-          onNextClick();
-
           console.log('`onUserAnswerSubmission` ran');
       }
+
+
+      $("#start-button").click(function(event) {
+            //event.preventDefault();
+            
+            $("#quiz-screen-intro").hide();
+            $("#quiz").show();
+            //$(initQuiz);
+            renderQuizApp();
+            //startQuizApp();
+            quizAppProgress();
+            onUserAnswerSubmission();
+            onNextClick();
+            //restartQuizApp();
+            /*$("#quiz").show().animate({
+              opacity: 1
+            }, 500);*/
+      });
+
+      
+
+      
+
+     
+
+      
 
       function resetQuiz() {
           numCorrect = 0;
           currentQuestion = 0;
-          quizQuestions.length = 0;
 
 
           /*might not need this one quiz q's are fixed*/
             $("#questionNumber").html(currentQuestion+1);
             $("#scoreNumber").html(numCorrect);
-            $('#quiz__content').html("");
+            //$('#quiz__content').html("");
             $(".quiz__content-wrapper").show();
 
+            //generateItemsString();
+            
       }
 
-      function restartQuizApp() {
-          //responsible for when an user wants to start a new quiz
-          console.log('`restartQuizApp` ran');
-          $("#restart").click(function(event) {
+      // function restartQuizApp() {
+      //     //responsible for when an user wants to start a new quiz
+      //     console.log('`restartQuizApp` ran');
+      // }
 
-            event.preventDefault();
-            $("#final-results").hide();
-            $("#quiz-screen-intro").show();
-            resetQuiz();
+      $("#restart").click(function(event) {
+        $("#final-results").hide();
+        $("#quiz-screen-intro").show();
 
+        resetQuiz();
+        renderQuizApp();
+        quizAppProgress();
+        onUserAnswerSubmission();
+        onNextClick();
+        //restartQuizApp();
+        //renderQuizApp();
+            //location.reload(true);
+            //$(initQuiz);
             //document.getElementById('myform').reset();
-          });
-      }
+      });
 
       // this function will be our callback when the page loads.
-      function initQuiz() {
-          renderQuizApp();
-          startQuizApp();
-          quizAppProgress();
-          onUserAnswerSubmission();
-          restartQuizApp();
-      }
+      // function initQuiz() {
+
+      // }
 
       // when the page loads, call `initQuiz`
-      $(initQuiz);
-  })
-);
+//   })
+// );
