@@ -16,9 +16,8 @@
 
 //-->LAST NEXT ON FEEDBACK SCREEN
 //thoughts to self
-//--get value of selected answer: COMPLETE
-    //user answer must equal `quizQuestion.answers.c`
-//--compare if it is correct or incorrect
-//--if correct; say correct! & add +1 to score
-//--if incorrect; say incorrect & do not add to score
-//.inputGroup input:checked ~ label:before
+//restarting the quiz....
+//we know we need to hide and show screens
+//how would i get the quiz to go back to the beginning/reset
+//questionNumber = currentQuestion
+//scoreNumber = numCorrect

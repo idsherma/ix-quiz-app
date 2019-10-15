@@ -64,12 +64,9 @@
           }
       ];
 
-      let totalQuestions = 1; 
       let currentQuestion = 0;
       let numCorrect = 0;
-      let totalNumQuestions = quizQuestions.length; //5
-      //console.log(totalNumQuestions);
-      //index and totalNum
+      let totalNumQuestions = quizQuestions.length; 
       
       function generateItemsString() {
 
@@ -78,8 +75,8 @@
         quizQuestions.forEach(function (quizQuestion, index) {
  
           quizQuestionContent.push(
-            `<h2 class="quiz-screen__question">${quizQuestion.question}</h2>
-            <form class="form">
+            `<form class="form" id="myform">
+                <h2 class="quiz-screen__question">${quizQuestion.question}</h2>
                 <div class="inputGroup">
                   <input id="${quizQuestion.answers.a}" name="radio" type="radio" value="${quizQuestion.answers.a}"/>
                   <label for="${quizQuestion.answers.a}">${quizQuestion.answers.a}</label>
@@ -100,8 +97,6 @@
           );
         });
         
-        //console.log(quizQuestionContent[currentQuestion]);
-
         return `${quizQuestionContent[currentQuestion]}`;
       }
 
@@ -112,6 +107,8 @@
 
           // insert that HTML into the DOM
           $('#quiz__content').html(quizQuestionString);
+          //document.getElementById('myform').reset();
+          //restartQuizApp();
       }
 
       function startQuizApp() {
@@ -135,7 +132,7 @@
 
       function quizAppProgress() {
           //responsible for letting the user know what question they are on
-          $("#qNum").html(currentQuestion+1);
+          $("#questionNumber").html(currentQuestion+1);
           console.log('`quizAppProgress` ran');
       }
 
@@ -180,9 +177,12 @@
               alert("Please answer the question!");
               return;
             } else if (userAnswer === quizQuestions[currentQuestion].correctAnswer) {
+
               $(".quiz-screen__answer-header").html('Correct!');
+
               //Score will update +1 if answer is correct
-              $("#scoreNum").html(numCorrect+=1);
+              $("#scoreNumber").html(numCorrect+=1);
+
             } else {
               $(".quiz-screen__answer-header").html('Incorrect!');
             }
@@ -198,13 +198,31 @@
           console.log('`onUserAnswerSubmission` ran');
       }
 
+      function resetQuiz() {
+          numCorrect = 0;
+          currentQuestion = 0;
+          quizQuestions.length = 0;
+
+
+          /*might not need this one quiz q's are fixed*/
+            $("#questionNumber").html(currentQuestion+1);
+            $("#scoreNumber").html(numCorrect);
+            $('#quiz__content').html("");
+            $(".quiz__content-wrapper").show();
+
+      }
+
       function restartQuizApp() {
           //responsible for when an user wants to start a new quiz
           console.log('`restartQuizApp` ran');
           $("#restart").click(function(event) {
+
             event.preventDefault();
             $("#final-results").hide();
             $("#quiz-screen-intro").show();
+            resetQuiz();
+
+            //document.getElementById('myform').reset();
           });
       }
 
