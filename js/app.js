@@ -139,6 +139,33 @@
           console.log('`quizAppProgress` ran');
       }
 
+      function onNextClick() {
+        $("#next").click(function(event) {
+          event.preventDefault();
+
+          $(".quiz__content-wrapper").show();
+          $("#quiz-feedback").hide();
+          
+          currentQuestion+=1; 
+
+          resultScreen();
+          quizAppProgress();
+          renderQuizApp();
+        });
+      }
+
+      function resultScreen() {
+        if(currentQuestion === totalNumQuestions) {
+          //go to result screen
+          $("#quiz, #quiz-feedback, .quiz__content-wrapper").hide();
+          $("#final-results").show();
+
+          // show number of correct answers out of total
+          $(".quiz-screen__results").html(numCorrect + ' out of ' + totalNumQuestions);
+          return;
+        }
+      }
+
       function onUserAnswerSubmission() {
           //responsible for giving textual feedback about their answer. 
           //If incorrect, they should be told the correct answer.
@@ -165,23 +192,8 @@
             $("#quiz-feedback").show();
           });
 
-          $("#next").click(function(event) {
-            event.preventDefault();
 
-            $(".quiz__content-wrapper").show();
-            $("#quiz-feedback").hide();
-            
-            currentQuestion+=1; 
-
-            if(currentQuestion === totalNumQuestions) {
-              //go to result screen
-              console.log('we are going to the result screen!');
-              return;
-            }
-
-            quizAppProgress();
-            renderQuizApp();
-          });
+          onNextClick();
 
           console.log('`onUserAnswerSubmission` ran');
       }
@@ -189,6 +201,11 @@
       function restartQuizApp() {
           //responsible for when an user wants to start a new quiz
           console.log('`restartQuizApp` ran');
+          $("#restart").click(function(event) {
+            event.preventDefault();
+            $("#final-results").hide();
+            $("#quiz-screen-intro").show();
+          });
       }
 
       // this function will be our callback when the page loads.

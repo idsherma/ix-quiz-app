@@ -4,10 +4,11 @@
 //Score should update +1 if user gets answer correct - DONE
 //Question should update +1 when user goes to next question (update after user clicks next) - DONE
 //User should not be able to skip to next question/on click - DONE
+//Check if last question and go to result screen - DONE
+//On result screen; display `you got x out of 5 correct!` - DONE
 
-//Check if last question and go to result screen
-//On result screen; display `you got x/5 correct!`
 //Restart quiz 
+//REFACTOR*
 //Beautify quiz
 
 //WANT TO REFACTOR 
