@@ -6,8 +6,8 @@
 //User should not be able to skip to next question/on click - DONE
 //Check if last question and go to result screen - DONE
 //On result screen; display `you got x out of 5 correct!` - DONE
+//Restart quiz - DONE
 
-//Restart quiz 
 //REFACTOR*
 //Beautify quiz
 

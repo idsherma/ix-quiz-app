@@ -63,6 +63,11 @@
               answerFeedback: "$1 out of every $10 spent at stores is for packaging. Packaging accounts for one-third of our waste by weight or half of our waste by volume."
           }
       ];
+      $("#next").click(goToNext);
+      $("#submit").click(onUserAnswerSubmission);
+      $("#start-button").click(processStart);
+      $("#restart").click(processRestart);
+  
       let currentQuestion = 0;
       let numCorrect = 0;
       const totalNumQuestions = quizQuestions.length; 
@@ -94,7 +99,7 @@
           );
         });
 
-        console.log(quizQuestionContent);
+        //console.log(quizQuestionContent);
         
         return `${quizQuestionContent[currentQuestion]}`;
       }
@@ -121,20 +126,20 @@
           $("#questionNumber").html(currentQuestion+1);
           console.log('`quizAppProgress` ran');
       }
-      function onNextClick() {
-        $("#next").click(function(event) {
-          event.preventDefault();
 
-          $(".quiz__content-wrapper").show();
-          $("#quiz-feedback").hide();
-          
-          currentQuestion+=1; 
+      function goToNext(event) {
+        if(event) event.preventDefault();
+        console.log('currentQuestion', currentQuestion);
+        $(".quiz__content-wrapper").show();
+        $("#quiz-feedback").hide();
+        
+        currentQuestion+=1;
 
-          quizAppProgress();
-          renderQuizApp();
-          resultScreen();
-        });
+        quizAppProgress();
+        renderQuizApp();
+        resultScreen();
       }
+
       function resultScreen() {
         if(currentQuestion === totalNumQuestions) {
           //go to result screen
@@ -146,65 +151,57 @@
           return;
         }
       }
-      function onUserAnswerSubmission() {
+
+      function onUserAnswerSubmission(event) {
           //responsible for giving textual feedback about their answer. 
           //If incorrect, they should be told the correct answer.
           //user should also be able to move onto the next question.
-          $("#submit").click(function(event) {
-            event.preventDefault();
+          if (event) event.preventDefault();
 
-            let userAnswer = $("input:checked").val();
-            //console.log(userAnswer);
+          let userAnswer = $("input:checked").val();
+          //console.log(userAnswer);
 
-            if (userAnswer === undefined) {
-              alert("Please answer the question!");
-              return;
-            } else if (userAnswer === quizQuestions[currentQuestion].correctAnswer) {
+          if (userAnswer === undefined) {
+            alert("Please answer the question!");
+            return;
+          } else if (userAnswer === quizQuestions[currentQuestion].correctAnswer) {
 
-              $(".quiz-screen__answer-header").html('Correct!');
+            $(".quiz-screen__answer-header").html('Correct!');
 
-              //Score will update +1 if answer is correct
-              $("#scoreNumber").html(numCorrect+=1);
+            //Score will update +1 if answer is correct
+            $("#scoreNumber").html(numCorrect+=1);
+            console.log("Got it correct, is now " + numCorrect);
 
-            } else {
-              $(".quiz-screen__answer-header").html('Incorrect!');
-            }
+          } else {
+            $(".quiz-screen__answer-header").html('Incorrect!');
+          }
 
-            $(".quiz-screen__answer-copy").html(quizQuestions[currentQuestion].answerFeedback);
-            $(".quiz__content-wrapper").hide();
-            $("#quiz-feedback").show();
-          });
+          $(".quiz-screen__answer-copy").html(quizQuestions[currentQuestion].answerFeedback);
+          $(".quiz__content-wrapper").hide();
+          $("#quiz-feedback").show();
 
           console.log('`onUserAnswerSubmission` ran');
       }
 
-
-      $("#start-button").click(function(event) {
-            //event.preventDefault();
-            
-            $("#quiz-screen-intro").hide();
-            $("#quiz").show();
-            //$(initQuiz);
-            renderQuizApp();
-            //startQuizApp();
-            quizAppProgress();
-            onUserAnswerSubmission();
-            onNextClick();
-            //restartQuizApp();
-            /*$("#quiz").show().animate({
-              opacity: 1
-            }, 500);*/
-      });
-
+      function processStart(event) {
+        //event.preventDefault();
+        console.log("Starting with " + numCorrect);
+        $("#quiz-screen-intro").hide();
+        $("#quiz").show();
+        //$(initQuiz);
+        renderQuizApp();
+        //startQuizApp();
+        quizAppProgress();
+        //onUserAnswerSubmission();
+        // goToNext();
+        //restartQuizApp();
+        /*$("#quiz").show().animate({
+          opacity: 1
+        }, 500);*/
+      }
       
-
-      
-
-     
-
-      
-
       function resetQuiz() {
+        console.log("Resetting from " + numCorrect);
           numCorrect = 0;
           currentQuestion = 0;
 
@@ -219,26 +216,27 @@
             
       }
 
-      // function restartQuizApp() {
-      //     //responsible for when an user wants to start a new quiz
-      //     console.log('`restartQuizApp` ran');
-      // }
-
-      $("#restart").click(function(event) {
+      function processRestart(event) {
         $("#final-results").hide();
         $("#quiz-screen-intro").show();
 
         resetQuiz();
         renderQuizApp();
         quizAppProgress();
-        onUserAnswerSubmission();
-        onNextClick();
+        //onUserAnswerSubmission();
+        // goToNext();
         //restartQuizApp();
         //renderQuizApp();
             //location.reload(true);
             //$(initQuiz);
             //document.getElementById('myform').reset();
-      });
+      }
+
+      // function restartQuizApp() {
+      //     //responsible for when an user wants to start a new quiz
+      //     console.log('`restartQuizApp` ran');
+      // }
+
 
       // this function will be our callback when the page loads.
       // function initQuiz() {
