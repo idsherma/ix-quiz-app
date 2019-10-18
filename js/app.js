@@ -80,22 +80,22 @@
 		quizQuestions.forEach(function (quizQuestion, index)
 		{
 			quizQuestionContent.push(
-				`<form class="form">
+				`<form class="form" role="form">
                 <h2 class="quiz-screen__question">${quizQuestion.question}</h2>
                 <div class="inputGroup">
-                  <input id="${quizQuestion.answers.a}" name="radio" type="radio" value="${quizQuestion.answers.a}"/>
+                  <input id="${quizQuestion.answers.a}" role="radio" name="radio" type="radio" value="${quizQuestion.answers.a}"/>
                   <label for="${quizQuestion.answers.a}">${quizQuestion.answers.a}</label>
                 </div>
                 <div class="inputGroup">
-                  <input id="${quizQuestion.answers.b}" name="radio" type="radio" value="${quizQuestion.answers.b}"/>
+                  <input id="${quizQuestion.answers.b}" role="radio" name="radio" type="radio" value="${quizQuestion.answers.b}"/>
                   <label for="${quizQuestion.answers.b}">${quizQuestion.answers.b}</label>
                 </div>
                 <div class="inputGroup">
-                  <input id="${quizQuestion.answers.c}" name="radio" type="radio" value="${quizQuestion.answers.c}"/>
+                  <input id="${quizQuestion.answers.c}" role="radio" name="radio" type="radio" value="${quizQuestion.answers.c}"/>
                   <label for="${quizQuestion.answers.c}">${quizQuestion.answers.c}</label>
                 </div>
                 <div class="inputGroup">
-                  <input id="${quizQuestion.answers.d}" name="radio" type="radio" value="${quizQuestion.answers.d}"/>
+                  <input id="${quizQuestion.answers.d}" role="radio" name="radio" type="radio" value="${quizQuestion.answers.d}"/>
                   <label for="${quizQuestion.answers.d}">${quizQuestion.answers.d}</label>
                 </div>
             </form>`
