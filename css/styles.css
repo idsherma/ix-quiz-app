@@ -74,7 +74,7 @@ p {
 .quiz-screen__start-button:hover,
 .quiz-screen__submit:hover, 
 .quiz-screen__next:hover {
-  background-color: grey;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ------------------------------ */
@@ -166,6 +166,10 @@ p {
   margin: 5px 0;
   position: relative;
   border: 2px solid rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+}
+
+.inputGroup:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
