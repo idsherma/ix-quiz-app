@@ -1,6 +1,6 @@
-// (function(scs) {
-//   scs(window.jQuery, window, document);
-//   }(function($, window, document) {
+(function(scs) {
+  scs(window.jQuery, window, document);
+  }(function($, window, document) {
 
       // `quizQuestions` is responsible for storing the underlying data
       // that our app needs to keep track of in order to work.
@@ -63,11 +63,7 @@
               answerFeedback: "$1 out of every $10 spent at stores is for packaging. Packaging accounts for one-third of our waste by weight or half of our waste by volume."
           }
       ];
-      $("#next").click(goToNext);
-      $("#submit").click(onUserAnswerSubmission);
-      $("#start-button").click(processStart);
-      $("#restart").click(processRestart);
-  
+ 
       let currentQuestion = 0;
       let numCorrect = 0;
       const totalNumQuestions = quizQuestions.length; 
@@ -99,24 +95,17 @@
           );
         });
 
-        //console.log(quizQuestionContent);
-        
         return `${quizQuestionContent[currentQuestion]}`;
       }
 
       function renderQuizApp() {
         let quizQuestionString = generateItemsString();
-        // this function will be responsible for rendering the quiz app in the DOM
-        console.log('`renderQuizApp` ran');
-          
-          //console.log(currentQuestion);
+          // this function will be responsible for rendering the quiz app in the DOM
 
           // insert that HTML into the DOM
           $('#quiz__content').html(quizQuestionString);
 
           if(currentQuestion === totalNumQuestions) {
-            //console.log('we are at the end');
-
             $('#quiz__content').html("");
           }
       }
@@ -124,12 +113,10 @@
       function quizAppProgress() {
           //responsible for letting the user know what question they are on
           $("#questionNumber").html(currentQuestion+1);
-          console.log('`quizAppProgress` ran');
       }
 
       function goToNext(event) {
         if(event) event.preventDefault();
-        console.log('currentQuestion', currentQuestion);
         $(".quiz__content-wrapper").show();
         $("#quiz-feedback").hide();
         
@@ -159,7 +146,6 @@
           if (event) event.preventDefault();
 
           let userAnswer = $("input:checked").val();
-          //console.log(userAnswer);
 
           if (userAnswer === undefined) {
             alert("Please answer the question!");
@@ -170,7 +156,6 @@
 
             //Score will update +1 if answer is correct
             $("#scoreNumber").html(numCorrect+=1);
-            console.log("Got it correct, is now " + numCorrect);
 
           } else {
             $(".quiz-screen__answer-header").html('Incorrect!');
@@ -179,41 +164,21 @@
           $(".quiz-screen__answer-copy").html(quizQuestions[currentQuestion].answerFeedback);
           $(".quiz__content-wrapper").hide();
           $("#quiz-feedback").show();
-
-          console.log('`onUserAnswerSubmission` ran');
       }
 
       function processStart(event) {
-        //event.preventDefault();
-        console.log("Starting with " + numCorrect);
         $("#quiz-screen-intro").hide();
         $("#quiz").show();
-        //$(initQuiz);
         renderQuizApp();
-        //startQuizApp();
         quizAppProgress();
-        //onUserAnswerSubmission();
-        // goToNext();
-        //restartQuizApp();
-        /*$("#quiz").show().animate({
-          opacity: 1
-        }, 500);*/
       }
       
       function resetQuiz() {
-        console.log("Resetting from " + numCorrect);
           numCorrect = 0;
           currentQuestion = 0;
-
-
-          /*might not need this one quiz q's are fixed*/
             $("#questionNumber").html(currentQuestion+1);
             $("#scoreNumber").html(numCorrect);
-            //$('#quiz__content').html("");
             $(".quiz__content-wrapper").show();
-
-            //generateItemsString();
-            
       }
 
       function processRestart(event) {
@@ -223,26 +188,11 @@
         resetQuiz();
         renderQuizApp();
         quizAppProgress();
-        //onUserAnswerSubmission();
-        // goToNext();
-        //restartQuizApp();
-        //renderQuizApp();
-            //location.reload(true);
-            //$(initQuiz);
-            //document.getElementById('myform').reset();
       }
 
-      // function restartQuizApp() {
-      //     //responsible for when an user wants to start a new quiz
-      //     console.log('`restartQuizApp` ran');
-      // }
-
-
-      // this function will be our callback when the page loads.
-      // function initQuiz() {
-
-      // }
-
-      // when the page loads, call `initQuiz`
-//   })
-// );
+      $("#next").click(goToNext);
+      $("#submit").click(onUserAnswerSubmission);
+      $("#start-button").click(processStart);
+      $("#restart").click(processRestart);
+  })
+);
