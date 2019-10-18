@@ -126,6 +126,12 @@ p {
   }
 }
 
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: 52px;
+  }
+}
+
 /* ------------------------------ */
 /* ------------------------------ */
 /*     QUESTION SCREEN FOR QUIZ   */
@@ -360,5 +366,11 @@ p {
 @media only screen and (min-width: 768px) {
   .quiz-screen__restart-header {
     font-size: 42px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .quiz-screen__restart-header {
+      font-size: 52px;
   }
 }
