@@ -7,8 +7,8 @@
 //Check if last question and go to result screen - DONE
 //On result screen; display `you got x out of 5 correct!` - DONE
 //Restart quiz - DONE
+//REFACTOR* - DONE
 
-//REFACTOR*
 //Beautify quiz
 
 //WANT TO REFACTOR 

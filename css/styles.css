@@ -4,11 +4,39 @@
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  background-color: #A3A3A3;
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+}
+
+h1 {
+  font-size: 34px;
+  font-weight: 300;
+  color: white;
 }
 
 p {
   margin: 0;
+}
+
+.fa-recycle {
+  font-size: 70px;
+  color: white;
+  animation: spin 4s linear infinite;
+}
+
+.fa-leaf, 
+.fa-check-circle,
+.fa-times-circle {
+  font-size: 70px;
+  color: white;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .quiz-screen {
@@ -18,20 +46,20 @@ p {
   min-height: 100vh;
 }
 
-
 .quiz-screen__wrapper {
- /* // margin: auto; */
-  padding: 30px;
-  background-color: #D9D9D9;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
   text-align: center;
   width: 90%;
   border-radius: 3px;
 }
+
 .quiz-screen__start-button,
 .quiz-screen__submit, 
 .quiz-screen__next {
-  background-color: #9B9B9B;
-  border: none;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -51,14 +79,17 @@ p {
 
 /* ------------------------------ */
 /* ------------------------------ */
-/*     HIDDEN SCREENS FOR QUIZ      */
+/*     HIDDEN SCREENS FOR QUIZ    */
 /* ------------------------------ */
+
+#quiz {
+  opacity: 0; 
+}
 
 #quiz, 
 #quiz-feedback, 
 #final-results {
   display: none;
-  /* opacity: 0; */
 }
 
 /* ------------------------------ */
@@ -66,21 +97,32 @@ p {
 /*     START SCREEN FOR QUIZ      */
 /* ------------------------------ */
 
-@media only screen and (min-width: 1024px) {
+#quiz-screen-intro {
+  margin: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 42px;
+  }
+
   .quiz-screen__wrapper {
     padding: 75px;
   }
-  .quiz-screen__intro-logo {
-    width: 190px;
-    height: 190px;
+
+  .quiz-screen__start-button {
+    font-size: 28px;
   }
 
-  h1 {
-    font-size: 50px;
+  .fa-recycle, 
+  .fa-leaf, 
+  .fa-check-circle,
+  .fa-times-circle {
+    font-size: 90px;
   }
 
-  .quiz-screen__start-button { 
-    font-size: 26px;
+  #quiz-screen-intro {
+    margin: 0;
   }
 }
 
@@ -90,13 +132,16 @@ p {
 /* ------------------------------ */
 
 .quiz-screen__question {
-  text-align: left;
+  text-align: center;
   font-size: 20px;
+  color: white;
+  font-weight: 300;
 }
 
 .quiz-count-wrapper__questions, 
 .quiz-count-wrapper__score {
-font-weight: 700;
+  font-weight: 300;
+  color: white;
 }
 
 .quiz-screen__submit, 
@@ -117,12 +162,13 @@ font-weight: 700;
 }
 
 .inputGroup {
-  background-color: #E2E0E3;
   display: block;
   margin: 5px 0;
   position: relative;
-  border: 1px solid #979797;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
 }
+
 .inputGroup label {
   padding: 12px 30px;
   width: 100%;
@@ -133,8 +179,10 @@ font-weight: 700;
   z-index: 2;
   transition: color 200ms ease-in;
   overflow: hidden;
-  font-weight: 700;
+  font-weight: 300;
+  color: white;
 }
+
 .inputGroup label:before {
   width: 100%;
   height: 10px;
@@ -149,6 +197,7 @@ font-weight: 700;
   opacity: 0;
   z-index: -1;
 }
+
 .inputGroup label:after {
   width: 23px;
   height: 23px;
@@ -167,13 +216,17 @@ font-weight: 700;
   cursor: pointer;
   transition: all 200ms ease-in;
 }
+
 .inputGroup input:checked ~ label {
   color: #fff;
+  font-weight: 700;
 }
+
 .inputGroup input:checked ~ label:before {
   transform: translate(-50%, -50%) scale3d(56, 56, 1);
   opacity: 1;
 }
+
 .inputGroup input:checked ~ label:after {
   background-color: #54E0C7;
   border-color: #54E0C7;
@@ -193,6 +246,33 @@ font-weight: 700;
 }
 
 @media only screen and (min-width: 768px) {
+
+  .quiz-count-wrapper__questions, 
+  .quiz-count-wrapper__score {
+    font-size: 28px;
+  }
+
+  .quiz-screen__question {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .inputGroup label {
+    font-size: 28px;
+  }
+
+  .quiz-screen__submit, 
+  .quiz-screen__next {
+    margin: 50px auto 0px auto;
+    font-size: 28px;
+  }
+
+  .inputGroup label:after {
+    right: 10px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
   .form {
     width: 100%;
     flex-wrap: wrap;
@@ -204,33 +284,8 @@ font-weight: 700;
     flex: 0 0 33.33333%;
     margin: 5px;
   }
-
-  .quiz-count-wrapper__questions, 
-  .quiz-count-wrapper__score {
-    font-size: 22px;
-  }
-
-  .quiz-screen__question {
-    font-size: 40px;
-    text-align: center;
-  }
-
-  .inputGroup label {
-    font-size: 26px;
-  }
-
-  .quiz-screen__submit, 
-  .quiz-screen__next {
-    margin: 50px auto 0px auto;
-    font-size: 24px;
-  }
 }
 
-@media only screen and (min-width: 768px) {
-  .inputGroup label:after {
-    right: 10px;
-  }
-}
 
 /* ------------------------------ */
 /* ------------------------------ */
@@ -242,6 +297,7 @@ font-weight: 700;
 }
 
 .quiz-screen__answer-header {
+  color: white;
   text-transform: uppercase;
   font-size: 26px;
   font-weight: 700;
@@ -250,7 +306,9 @@ font-weight: 700;
 }
 
 .quiz-screen__answer-copy {
-  text-align: left;
+  text-align: center;
+  color: white;
+  font-weight: 300;
 }
 
 .correct-answer {
@@ -260,11 +318,12 @@ font-weight: 700;
 
 @media only screen and (min-width: 768px) {
   .quiz-screen__answer-header {
-    font-size: 42px;
+    font-size: 52px;
   }
 
   .quiz-screen__answer-copy {
-    font-size: 38px;
+    padding-top: 15px;
+    font-size: 34px;
   }
 
   .quiz-screen__wrapper--answer {
@@ -274,11 +333,6 @@ font-weight: 700;
 }
 
 @media only screen and (min-width: 1024px) {
-  .quiz-screen__icon {
-    width: 120px;
-    height: 120px;
-  }
-
   .quiz-screen__answer-copy {
     max-width: 900px;
     margin: 0 auto;
@@ -291,14 +345,15 @@ font-weight: 700;
 /* ------------------------------ */
 
 .quiz-screen__restart-header {
-  font-weight: 400;
+  font-weight: 300;
+  color: white;
 }
 
 .quiz-screen__results {
   font-weight: 700;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   .quiz-screen__restart-header {
     font-size: 42px;
   }
