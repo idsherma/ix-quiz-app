@@ -1,5 +1,0 @@
-#Ignore folder named `vscode`
-.vscode/
-
-#Ignore file named `DS_Store`
-.DS_Store
